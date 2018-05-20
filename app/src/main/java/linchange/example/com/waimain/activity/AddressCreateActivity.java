@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import linchange.example.com.waimain.R;
 import linchange.example.com.waimain.bean.User;
+import linchange.example.com.waimain.context.AppConfig;
 import linchange.example.com.waimain.entity.Address;
 import linchange.example.com.waimain.myInterface.AddressService;
 import retrofit2.Call;
@@ -46,7 +47,7 @@ public class AddressCreateActivity extends AppCompatActivity {
                     gender=1;
                 }
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://localhost:8080/")
+                        .baseUrl(AppConfig.SERVER_URL)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 AddressService addressService =retrofit.create(AddressService.class);

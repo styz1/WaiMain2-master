@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import linchange.example.com.waimain.R;
 import linchange.example.com.waimain.bean.User;
+import linchange.example.com.waimain.context.AppConfig;
 import linchange.example.com.waimain.entity.FeedBack;
 import linchange.example.com.waimain.myInterface.FeedBackService;
 import linchange.example.com.waimain.utils.ObjectSaveUtil;
@@ -46,7 +47,7 @@ public class UserFeedBackActivity extends AppCompatActivity {
                     Toast.makeText(UserFeedBackActivity.this,"请输入您的联系方式",Toast.LENGTH_SHORT).show();
                 }else {
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://localhost:8080/")
+                            .baseUrl(AppConfig.SERVER_URL)
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
                     FeedBackService feedBackService =retrofit.create(FeedBackService.class);

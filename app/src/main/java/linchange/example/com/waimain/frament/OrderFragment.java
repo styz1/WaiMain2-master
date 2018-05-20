@@ -15,6 +15,7 @@ import java.util.List;
 import linchange.example.com.waimain.R;
 import linchange.example.com.waimain.adapter.OrderAdapter;
 import linchange.example.com.waimain.bean.User;
+import linchange.example.com.waimain.context.AppConfig;
 import linchange.example.com.waimain.entity.Order;
 import linchange.example.com.waimain.myInterface.OrderService;
 import linchange.example.com.waimain.utils.ObjectSaveUtil;
@@ -55,7 +56,7 @@ public class OrderFragment extends Fragment {
         recyclerView.setAdapter(orderAdapter);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://localhost:8080/")
+                .baseUrl(AppConfig.SERVER_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         OrderService orderService = retrofit.create(OrderService.class);

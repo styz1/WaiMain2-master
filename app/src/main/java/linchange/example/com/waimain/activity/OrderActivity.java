@@ -22,6 +22,7 @@ import java.util.Map;
 import linchange.example.com.waimain.R;
 import linchange.example.com.waimain.adapter.OrderProductsAdapter;
 import linchange.example.com.waimain.bean.User;
+import linchange.example.com.waimain.context.AppConfig;
 import linchange.example.com.waimain.entity.Address;
 import linchange.example.com.waimain.entity.Product;
 import linchange.example.com.waimain.entity.Shop;
@@ -129,7 +130,7 @@ public class OrderActivity extends AppCompatActivity {
 //                String shopname=shop.getName();
 //                String icon=shop.getIcon();
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://localhost:8080/")
+                        .baseUrl(AppConfig.SERVER_URL)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 OrderService orderService =retrofit.create(OrderService.class);

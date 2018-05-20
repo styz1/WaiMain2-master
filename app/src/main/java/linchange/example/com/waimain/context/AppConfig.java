@@ -16,7 +16,7 @@ public class AppConfig {
      */
     // 我的域名lazywaimai.com没有备案，最近被封了，只能使用ip地址了，url路径有点长。。。。。
 //    public static final String SERVER_URL = "http://api.beta.lazywaimai.com/v1/";
-    public static final String SERVER_URL = "http://localhost/lazywaimai-api-master/web/v1/";
+    public static final String SERVER_URL = "http://localhost:8080/";
 
     /**
      * 连接超时时间

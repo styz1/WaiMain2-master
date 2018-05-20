@@ -6,6 +6,7 @@ import java.io.File;
 import java.util.List;
 
 import linchange.example.com.waimain.bean.User;
+import linchange.example.com.waimain.context.AppConfig;
 import linchange.example.com.waimain.entity.Address;
 import linchange.example.com.waimain.entity.FeedBack;
 import linchange.example.com.waimain.entity.Order;
@@ -32,28 +33,28 @@ public class RetrofitTest {
     public static void main(String[] args){
         System.out.println("Start");
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://localhost:8080/")
+                .baseUrl(AppConfig.SERVER_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        OrderService orderService = retrofit.create(OrderService.class);
-        Call<Boolean> booleanCall = orderService.newOrder(1,1,"0","200","黄昊","15659131431",0,
-                "0","","福州大学30号楼406","东北大菜馆","http://localhost:8080/img/2.jpeg");
-        booleanCall.enqueue(new Callback<Boolean>() {
-            @Override
-            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                Boolean b =response.body();
-                if(b){
-                    System.out.println("提交订单成功");
-                }else{
-                    System.out.println("提交订单失败");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Boolean> call, Throwable t) {
-
-            }
-        });
+//        OrderService orderService = retrofit.create(OrderService.class);
+//        Call<Boolean> booleanCall = orderService.newOrder(1,1,"0","200","黄昊","15659131431",0,
+//                "0","","福州大学30号楼406","东北大菜馆","http://localhost:8080/img/2.jpeg");
+//        booleanCall.enqueue(new Callback<Boolean>() {
+//            @Override
+//            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+//                Boolean b =response.body();
+//                if(b){
+//                    System.out.println("提交订单成功");
+//                }else{
+//                    System.out.println("提交订单失败");
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Boolean> call, Throwable t) {
+//
+//            }
+//        });
 
 //        MultipartBody multipartBody = MultipartBody.Part
 

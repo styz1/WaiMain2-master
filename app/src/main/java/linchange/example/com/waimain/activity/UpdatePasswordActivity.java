@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import linchange.example.com.waimain.R;
 import linchange.example.com.waimain.bean.User;
+import linchange.example.com.waimain.context.AppConfig;
 import linchange.example.com.waimain.myInterface.UserService;
 import linchange.example.com.waimain.utils.ObjectSaveUtil;
 import retrofit2.Call;
@@ -48,7 +49,7 @@ public class UpdatePasswordActivity extends AppCompatActivity {
                     newPassword = et_newPassword.getText().toString();
                     //向服务器发起修改密码请求
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://localhost:8080/")
+                            .baseUrl(AppConfig.SERVER_URL)
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
                     UserService userService =retrofit.create(UserService.class);

@@ -15,6 +15,7 @@ import java.util.List;
 import linchange.example.com.waimain.R;
 import linchange.example.com.waimain.adapter.AddressAdapter;
 import linchange.example.com.waimain.bean.User;
+import linchange.example.com.waimain.context.AppConfig;
 import linchange.example.com.waimain.entity.Address;
 import linchange.example.com.waimain.myInterface.AddressService;
 import linchange.example.com.waimain.utils.ObjectSaveUtil;
@@ -41,7 +42,7 @@ public class MyAddressActivity extends AppCompatActivity {
                 case AddressUpdateActivity.REQUEST_CODE: {
                     Toast.makeText(MyAddressActivity.this, "更新数据", Toast.LENGTH_SHORT).show();
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://localhost:8080/")
+                            .baseUrl(AppConfig.SERVER_URL)
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
@@ -100,7 +101,7 @@ public class MyAddressActivity extends AppCompatActivity {
 
         //从后台获取地址列表
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://localhost:8080/")
+                .baseUrl(AppConfig.SERVER_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

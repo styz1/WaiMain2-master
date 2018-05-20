@@ -17,6 +17,7 @@ import java.util.List;
 
 import linchange.example.com.waimain.R;
 import linchange.example.com.waimain.adapter.ProductListAdapter;
+import linchange.example.com.waimain.context.AppConfig;
 import linchange.example.com.waimain.entity.Product;
 import linchange.example.com.waimain.entity.Shop;
 import linchange.example.com.waimain.myInterface.ProductService;
@@ -184,7 +185,7 @@ public class ShoppingActivity extends Activity {
         Bundle bundle=getIntent().getExtras();
         shop=(Shop) bundle.get("shop");
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://localhost:8080/")
+                .baseUrl(AppConfig.SERVER_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

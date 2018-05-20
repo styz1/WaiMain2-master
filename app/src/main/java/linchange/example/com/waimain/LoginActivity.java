@@ -16,6 +16,7 @@ import android.widget.Toast;
 import linchange.example.com.waimain.activity.MainActivity;
 import linchange.example.com.waimain.activity.RegisterActivity;
 import linchange.example.com.waimain.bean.User;
+import linchange.example.com.waimain.context.AppConfig;
 import linchange.example.com.waimain.myInterface.UserService;
 import linchange.example.com.waimain.utils.ObjectSaveUtil;
 import linchange.example.com.waimain.utils.ShareUtils;
@@ -87,7 +88,7 @@ public class LoginActivity extends Activity {
     //尝试登陆
     private void tryToLogin(String username, String password) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://localhost:8080/")
+                .baseUrl(AppConfig.SERVER_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

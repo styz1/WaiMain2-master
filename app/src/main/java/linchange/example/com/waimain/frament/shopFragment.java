@@ -19,6 +19,7 @@ import java.util.List;
 import linchange.example.com.waimain.R;
 import linchange.example.com.waimain.activity.BaiduMapActivity;
 import linchange.example.com.waimain.adapter.ShopAdapter;
+import linchange.example.com.waimain.context.AppConfig;
 import linchange.example.com.waimain.entity.Business;
 import linchange.example.com.waimain.entity.Shop;
 import linchange.example.com.waimain.myInterface.BusinessService;
@@ -60,7 +61,7 @@ public class shopFragment extends Fragment {
 
         System.out.println("Start");
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://localhost:8080/")
+                .baseUrl(AppConfig.SERVER_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         BusinessService businessService = retrofit.create(BusinessService.class);

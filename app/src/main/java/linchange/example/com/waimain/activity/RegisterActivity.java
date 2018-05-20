@@ -13,6 +13,7 @@ import android.widget.Toast;
 import linchange.example.com.waimain.LoginActivity;
 import linchange.example.com.waimain.R;
 import linchange.example.com.waimain.bean.User;
+import linchange.example.com.waimain.context.AppConfig;
 import linchange.example.com.waimain.myInterface.UserService;
 import linchange.example.com.waimain.utils.ShareUtils;
 import retrofit2.Call;
@@ -90,7 +91,7 @@ public class RegisterActivity extends Activity {
     //尝试登陆
     private void tryToRegister(String username, String password) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://localhost:8080/")
+                .baseUrl(AppConfig.SERVER_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         UserService userService = retrofit.create(UserService.class);
