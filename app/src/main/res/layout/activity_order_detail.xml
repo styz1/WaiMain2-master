@@ -5,5 +5,175 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="linchange.example.com.waimain.activity.OrderDetailActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            style="@style/Title.Card.WithPadding"
+            android:background="@color/dark_gray_bg"
+            android:text="感谢您对本店的支持，期待您的下次光临"
+            />
+        <TextView
+            android:id="@+id/txt_shopName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:gravity="center"
+            android:text="必胜宅急送（锦秋店）"
+            android:textSize="@dimen/font_normal"
+            android:textColor="@color/primary_text"
+            android:background="@color/dark_gray_bg"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="订单详情"
+            android:textSize="@dimen/font_normal"
+            android:textColor="@color/primary_text"
+            android:background="@color/dark_gray_bg"
+            />
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_margin="20dp"-->
+            <!--android:layout_height="150dp"-->
+            <!--android:text="商品名				数量				价格-->
+<!--农家小炒肉			1					14.0-->
+<!--尖椒鸡胗			1					14.0-->
+<!--咖喱鸡肉			1					14.0-->
+<!--木耳肉片			1					14.0-->
+<!--共计：56.0元-->
+<!--联系电话：15659131431-->
+<!--送货地址：福州大学30号楼406"-->
+            <!--/>-->
+
+        <LinearLayout
+            style="@style/Card.WithDivider"
+            android:layout_marginTop="0.0dip">
+
+            <LinearLayout style="@style/CardItem.FixedHeight">
+
+                <TextView
+                    style="@style/Txt.Hint"
+                    android:text="订  单  号"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_orderId"
+                    style="@style/Txt.Main.Weighted"
+                    android:layout_marginLeft="@dimen/spacing_massive"
+                    android:singleLine="false"
+                    tools:text="20180122160528453"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/CardItem.FixedHeight">
+
+                <TextView
+                    style="@style/Txt.Hint"
+                    android:text="订单状态"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_orderStatus"
+                    style="@style/Txt.Main.Weighted"
+                    android:layout_marginLeft="@dimen/spacing_massive"
+                    tools:text="已完成"
+                    />
+
+            </LinearLayout>
+            <LinearLayout style="@style/CardItem.FixedHeight">
+
+                <TextView
+                    style="@style/Txt.Hint"
+                    android:text="姓        名"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_orderUser"
+                    style="@style/Txt.Main.Weighted"
+                    android:layout_marginLeft="@dimen/spacing_massive"
+                    tools:text="15659131431"
+                    />
+
+            </LinearLayout>
+            <LinearLayout style="@style/CardItem.FixedHeight">
+
+                <TextView
+                    style="@style/Txt.Hint"
+                    android:text="配送电话"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_orderPhone"
+                    style="@style/Txt.Main.Weighted"
+                    android:layout_marginLeft="@dimen/spacing_massive"
+                    tools:text="黄昊"
+                    />
+
+            </LinearLayout>
+            <LinearLayout style="@style/CardItem.FixedHeight">
+
+                <TextView
+                    style="@style/Txt.Hint"
+                    android:text="配送地址"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_OrderAddress"
+                    style="@style/Txt.Main.Weighted"
+                    android:layout_marginLeft="@dimen/spacing_massive"
+                    tools:text="福州大学30号楼406"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/CardItem.FixedHeight">
+
+                <TextView
+                    style="@style/Txt.Hint"
+                    android:text="支付方式"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_payMethod"
+                    style="@style/Txt.Main.Weighted"
+                    android:layout_marginLeft="@dimen/spacing_massive"
+                    tools:text="支付宝"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+        android:id="@+id/btn_evaluate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="@dimen/spacing_major"
+        android:layout_marginRight="@dimen/spacing_major"
+        android:layout_marginBottom="3dp"
+        android:text="提交评价"
+        style="@style/Widget.LazyOrder.Button"
+        />
+        <Button
+            android:id="@+id/btn_evaluateDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/spacing_major"
+            android:layout_marginRight="@dimen/spacing_major"
+            android:layout_marginBottom="3dp"
+            android:text="查看评价"
+            style="@style/Widget.LazyOrder.Button"
+            />
+    </LinearLayout>
+
+
 
 </LinearLayout>

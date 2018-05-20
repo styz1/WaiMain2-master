@@ -27,14 +27,14 @@
             />
 
         <EditText
-            android:id="@+id/et_nickName"
+            android:id="@+id/et_name"
             android:layout_width="0.0dip"
             android:layout_height="match_parent"
             android:layout_weight="1.0"
             android:layout_gravity="center_vertical"
             android:maxLength="20"
-            android:hint="@string/hint_edit_nickname"
             android:background="@null"
+            android:focusable="false"
             style="@style/Widget.LazyOrder.EditText"
             />
 
@@ -53,12 +53,13 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/bt_setNickName"
+        android:id="@+id/bt_name"
         android:layout_width="match_parent"
         android:layout_height="@dimen/cell_normal"
         android:layout_margin="@dimen/spacing_major"
-        android:text="@string/btn_save"
+        android:text="确认"
         style="@style/Widget.LazyOrder.Button"
         />
 
 </LinearLayout>
+

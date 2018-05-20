@@ -7,12 +7,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import linchange.example.com.waimain.R;
 import linchange.example.com.waimain.activity.ShoppingActivity;
@@ -69,10 +71,12 @@ public class ProductListAdapter extends BaseAdapter {
             viewHolder.price = (TextView) convertView.findViewById(R.id.tv_product_pirce);
             viewHolder.sale = (TextView) convertView.findViewById(R.id.tv_sale_count);
             viewHolder.shopName = (TextView) convertView.findViewById(R.id.tv_product_shop_name);
-            viewHolder.detail = (TextView) convertView.findViewById(R.id.tv_product_detail);
+//            viewHolder.detail = (TextView) convertView.findViewById(R.id.tv_product_detail);
             viewHolder.selectedCount = (TextView) convertView.findViewById(R.id.tv_selected_count);
             viewHolder.addProduct = (ImageButton) convertView.findViewById(R.id.btn_add_product);
             viewHolder.subProduct = (ImageButton) convertView.findViewById(R.id.btn_sub_product);
+            //获得星级评价按钮
+            viewHolder.ratingBar = (RatingBar) convertView.findViewById(R.id.ratingBar);
 
             convertView.setTag(viewHolder); //将控件暂存器放到内容界面中
         } else { //内容界面不为空
@@ -101,7 +105,14 @@ public class ProductListAdapter extends BaseAdapter {
         viewHolder.price.setText(String.valueOf("￥" + product.getPrice())); //设置商品价格
         viewHolder.sale.setText(String.valueOf("月售:" + product.getSale())); //设置商品月销售量
         viewHolder.shopName.setText(product.getShopName()); //设置商家名称
-        viewHolder.detail.setText(product.getDetail()); //设置商品简介
+//        viewHolder.detail.setText(product.getDetail()); //设置商品简介
+        Random num = new Random();
+        int rate = num.nextInt(5)+2;
+        if(rate>=5){
+            rate=5;
+        }
+        viewHolder.ratingBar.setRating(rate);
+
     }
 
     /**
@@ -199,6 +210,7 @@ public class ProductListAdapter extends BaseAdapter {
         TextView selectedCount; //选择商品的数量
         ImageButton addProduct; //添加商品按钮
         ImageButton subProduct; //减去商品按钮
+        RatingBar ratingBar;
     }
 
 }

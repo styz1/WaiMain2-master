@@ -5,14 +5,18 @@ import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import linchange.example.com.waimain.R;
-import linchange.example.com.waimain.activity.Setting;
+import linchange.example.com.waimain.activity.SettingActivity;
 import linchange.example.com.waimain.activity.UserProfileActivity;
 import linchange.example.com.waimain.activity.MyAddressActivity;
 import linchange.example.com.waimain.bean.User;
@@ -28,6 +32,7 @@ import linchange.example.com.waimain.widget.section.SectionTextItemView;
 public class UserCenterFrament extends Fragment {
     private LinearLayout linearLayout;
     private SectionTextItemView address,favorite,evaluate,setting;
+    private ImageView touxiang;
     private User user;
 
     public static UserCenterFrament newInstance(String content){
@@ -41,10 +46,17 @@ public class UserCenterFrament extends Fragment {
         View view = inflater.inflate(R.layout.fg_user_center,container,false);
 //        Bundle bundle=getArguments();
 //        user=(User)bundle.getSerializable("user");
+        //获取当前用户信息
         user=(User)ObjectSaveUtil.readObject(getActivity());
+
         TextView Name=(TextView)view.findViewById(R.id.txt_account_name1);
         TextView Mobile=(TextView)view.findViewById(R.id.txt_mobileN);
-        Name.setText(user.getUsername());
+        if(TextUtils.isEmpty(user.getNickname())){
+            Name.setText("点击设置昵称");
+        }else{
+            Name.setText(user.getNickname());
+        }
+
         Mobile.setText(user.getMobile());
         linearLayout = (LinearLayout) view.findViewById(R.id.layout_login_before);
         //跳转到修改个人设置页面
@@ -70,11 +82,17 @@ public class UserCenterFrament extends Fragment {
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),Setting.class);
+                Intent intent = new Intent(getActivity(),SettingActivity.class);
                 getActivity().startActivity(intent);
             }
         });
-
+        //假如有头像则载入头像
+        if(!TextUtils.isEmpty(user.getIcon())) {
+            touxiang = (ImageView) view.findViewById(R.id.img_account_avatar1);
+            Glide.with(getActivity())
+                    .load(user.getIcon())
+                    .into(touxiang);
+        }
         return view;
     }
     //初始化控件

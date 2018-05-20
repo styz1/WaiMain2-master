@@ -1,6 +1,7 @@
 package linchange.example.com.waimain.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import linchange.example.com.waimain.R;
+import linchange.example.com.waimain.activity.OrderDetailActivity;
+import linchange.example.com.waimain.activity.ShoppingActivity;
 import linchange.example.com.waimain.entity.Order;
 
 /**
@@ -40,18 +43,30 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.LinearViewHo
     }
     @Override
     public void onBindViewHolder(OrderAdapter.LinearViewHolder holder, int position) {
-        Order order = orders.get(position);
+        final Order order = orders.get(position);
         Glide.with(mContext)
                 .load(order.getBusinessIcon())
                 .into(holder.imageView);
         holder.shopName.setText(order.getBusinessName());
-        holder.status.setText(order.getStatus());
+        if(order.getStatus().equals("0")){
+            holder.status.setText("订单已完成");
+        }else if(order.getStatus().equals("1")){
+            holder.status.setText("订单待配送");
+        }
         holder.address.setText(order.getAddress());
         holder.totalPrice.setText(order.getTotalPrice());
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+            }
+        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, OrderDetailActivity.class);
+                intent.putExtra("order",order);
+                mContext.startActivity(intent);
             }
         });
 

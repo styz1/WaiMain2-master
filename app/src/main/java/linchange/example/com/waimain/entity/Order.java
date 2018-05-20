@@ -1,19 +1,50 @@
 package linchange.example.com.waimain.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2018/4/17.
  */
 
-public class Order {
+public class Order implements Serializable {
 
     private Integer id;
     private Integer businessId;
     private Integer userId;
     private String status;
     private String totalPrice;
+    //订单接收人
+    private String consignee;
+    //订单联系电话
+    private String phone;
+    //订单支付方式
+    private Integer payMethod;
+    //是否已经评价
+    private String isEvaluate;
+    //评价id;
+    private Integer EvaluateId;
+    //订单详情
+    private String detail;
     private String address;
     private String businessName;
     private String businessIcon;
+
+    public String getIsEvaluate() {
+        return isEvaluate;
+    }
+
+    public void setIsEvaluate(String isEvaluate) {
+        this.isEvaluate = isEvaluate;
+    }
+
+    public Integer getEvaluateId() {
+        return EvaluateId;
+    }
+
+    public void setEvaluateId(Integer evaluateId) {
+        EvaluateId = evaluateId;
+    }
+
 
     public String getBusinessName() {
         return businessName;
@@ -32,7 +63,37 @@ public class Order {
         this.businessIcon = businessIcon;
     }
 
+    public String getConsignee() {
+        return consignee;
+    }
 
+    public void setConsignee(String consignee) {
+        this.consignee = consignee;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Integer getPayMethod() {
+        return payMethod;
+    }
+
+    public void setPayMethod(Integer payMethod) {
+        this.payMethod = payMethod;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
 
 
 

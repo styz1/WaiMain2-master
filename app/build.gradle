@@ -62,5 +62,5 @@ dependencies {
 
     //购物车第三方动画库
     compile 'com.github.jlcclidong:AddCartAniamtion:v3.0'
-
+    compile 'de.hdodenhof:circleimageview:2.1.0'
 }

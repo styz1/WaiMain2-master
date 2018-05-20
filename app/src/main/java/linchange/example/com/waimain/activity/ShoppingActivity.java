@@ -75,6 +75,7 @@ public class ShoppingActivity extends Activity {
                 if (selectedProducts.size() != 0) { //已选择商品数据不为空
                     Intent intent = new Intent(getApplicationContext(), OrderActivity.class); //新建意图
                     intent.putParcelableArrayListExtra("selectedProducts", selectedProducts); //设置已选择的商品数据
+                    intent.putExtra("shop",shop);
                     startActivity(intent); //启动信息输入界面
                 } else { //已选择商品数据为空
                     Toast.makeText(ShoppingActivity.this, "购物车为空，请选择商品", Toast.LENGTH_SHORT).show();

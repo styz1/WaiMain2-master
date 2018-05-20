@@ -20,6 +20,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- SD卡读取权限，用户写入离线定位数据 -->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_OWNER_DATA" />
 
     <application
         android:allowBackup="true"
@@ -53,9 +55,17 @@
         <activity android:name=".activity.BaiduMapActivity" />
         <activity android:name=".activity.SetNickNameActivity" />
         <activity android:name=".activity.SetUserName" />
-        <activity android:name=".activity.Setting" />
+        <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.OrderActivity" />
-        <activity android:name=".activity.AddressUpdateActivity"></activity>
+        <activity android:name=".activity.AddressUpdateActivity" />
+        <activity android:name=".activity.SetPhoneActivity" />
+        <activity android:name=".activity.SetEmailActivity" />
+        <activity android:name=".activity.ShowUserNameActivity" />
+        <activity android:name=".activity.UserFeedBackActivity" />
+        <activity android:name=".activity.UpdatePasswordActivity" />
+        <activity android:name=".activity.UploadHeadPortraitsActivity" />
+        <activity android:name=".activity.EvaluateActivity" />
+        <activity android:name=".activity.EvaluateDetailActivity"></activity>
     </application>
 
 </manifest>

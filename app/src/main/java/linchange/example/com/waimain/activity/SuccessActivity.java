@@ -62,8 +62,8 @@ public class SuccessActivity extends Activity {
         String address = otherIntent.getStringExtra("address"); //从意图获取送货地址
 
         StringBuilder orderResult = new StringBuilder(); //新建订单结果信息
-        orderResult.append("订单成功提交！\n"); //添加文本内容
-        orderResult.append("商品将于25分钟内送达。\n\n");
+//        orderResult.append("订单成功提交！\n"); //添加文本内容
+//        orderResult.append("商品将于25分钟内送达。\n\n");
 
         orderResult.append("订单信息如下\n");
         orderResult.append("商品名\t\t\t\t数量\t\t\t\t价格\n");
@@ -79,7 +79,7 @@ public class SuccessActivity extends Activity {
 
         orderResult.append("联系电话：" + phone + "\n");
         orderResult.append("送货地址：" + address);
-
+        System.out.println(orderResult);
         tvResult.setText(orderResult); //将订单结果信息设置到订单信息显示文字控件
     }
 

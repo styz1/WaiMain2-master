@@ -1,6 +1,5 @@
 package linchange.example.com.waimain.activity;
 
-import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,75 +12,72 @@ import linchange.example.com.waimain.R;
 import linchange.example.com.waimain.bean.User;
 import linchange.example.com.waimain.myInterface.UserService;
 import linchange.example.com.waimain.utils.ObjectSaveUtil;
+import linchange.example.com.waimain.utils.StringUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class SetNickNameActivity extends AppCompatActivity {
-    //编辑昵称
-    private EditText etNickName;
-    //提交编辑按钮
-    private Button submit;
-    private String nickName;
+public class SetEmailActivity extends AppCompatActivity {
+    private EditText et_email;
+    private Button bt_email;
+    private String email;
     private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set_nick_name);
-        //初始化控件
+        setContentView(R.layout.activity_set_email);
         initViews();
         initEvents();
     }
+    //初始化时间
     private void initEvents(){
-        //获取当前用户信息
-        user = (User)ObjectSaveUtil.readObject(SetNickNameActivity.this);
-        //显示原本昵称
-        etNickName.setText(user.getNickname());
 
-        //点击修改监听器
-        submit.setOnClickListener(new View.OnClickListener() {
+        //获取当前用户信息
+        user = (User) ObjectSaveUtil.readObject(SetEmailActivity.this);
+        //显示更改前的邮箱号
+        et_email.setText(user.getEmail());
+        bt_email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nickName = etNickName.getText().toString();
-                if(TextUtils.isEmpty(nickName)){
-                    //当输入昵称为空时提示无法为空
-                    Toast.makeText(SetNickNameActivity.this,"昵称不能为空",Toast.LENGTH_SHORT).show();
-                }else {
+                email = et_email.getText().toString();
+                if(TextUtils.isEmpty(email)){
+                    Toast.makeText(SetEmailActivity.this,"邮箱不能为空",Toast.LENGTH_SHORT).show();
+                }else if(!StringUtil.isEmail(email)){
+                    Toast.makeText(SetEmailActivity.this,"邮箱格式错误",Toast.LENGTH_SHORT).show();
+                }else{
 
-                    //向服务器发送修改昵称请求
                     Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl("http://localhost:8080/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
                     UserService userService =retrofit.create(UserService.class);
-                    Call<Boolean> updateNickNameCll = userService.updateNickName(user.getId(),nickName);
-                    updateNickNameCll.enqueue(new Callback<Boolean>() {
+                    Call<Boolean> updateEmailCall = userService.updateEmail(user.getId(),email);
+                    updateEmailCall.enqueue(new Callback<Boolean>() {
                         @Override
                         public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                             Boolean b= response.body();
                             if(b){
-                                Toast.makeText(SetNickNameActivity.this,"修改昵称成功",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SetEmailActivity.this,"修改邮箱成功",Toast.LENGTH_SHORT).show();
                                 finish();
                             }else {
-                                Toast.makeText(SetNickNameActivity.this,"修改昵称失败",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SetEmailActivity.this,"修改邮箱失败",Toast.LENGTH_SHORT).show();
                             }
                         }
-
                         @Override
                         public void onFailure(Call<Boolean> call, Throwable t) {
 
                         }
                     });
                 }
-
             }
         });
     }
+    //初始化控件
     private void initViews(){
-        etNickName = (EditText) findViewById(R.id.et_nickName);
-        submit = (Button) findViewById(R.id.bt_setNickName);
+        et_email = (EditText)findViewById(R.id.et_email);
+        bt_email = (Button)findViewById(R.id.bt_email);
     }
 }

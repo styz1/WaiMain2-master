@@ -10,6 +10,7 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:baselineAlignBottom="true"
+        android:src="@drawable/ic_lanucher"
         android:paddingLeft="8dp" />
 
     <LinearLayout
@@ -33,6 +34,7 @@
                 android:textSize="14sp"
                 android:singleLine="true"
                 android:ellipsize="end"
+                android:text="东北大菜馆"
                 />
 
             <TextView
@@ -42,6 +44,7 @@
                 android:layout_weight="1"
                 android:paddingLeft="8dp"
                 android:textColor="#B4B4B9"
+                android:text="订单已完成"
                 android:textSize="16sp" />
         </LinearLayout>
         <LinearLayout
@@ -60,6 +63,7 @@
             android:textSize="16sp"
             android:singleLine="true"
             android:ellipsize="end"
+            android:text="福州大学30号楼406"
             />
         <TextView
             android:id="@+id/total_price"
@@ -69,8 +73,14 @@
             android:paddingTop="10dp"
             android:textColor="#333"
             android:textSize="16sp"
+            android:text="￥191"
             />
         </LinearLayout>
 
         </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="评价"
+        />
 </LinearLayout>

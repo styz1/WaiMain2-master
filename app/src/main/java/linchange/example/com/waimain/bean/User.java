@@ -30,6 +30,17 @@ public class User implements Serializable{
     @SerializedName("last_address_id")
     long lastAddressId;
 
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    @SerializedName("icon")
+    String icon;
+
     public String getPassword() {
         return password;
     }

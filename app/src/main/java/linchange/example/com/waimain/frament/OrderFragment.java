@@ -66,18 +66,7 @@ public class OrderFragment extends Fragment {
                 List<Order> result = response.body();
                 orders.clear();
                 for(Order order : result){
-                    Order order2 =new Order();
-                    order2.setBusinessId(order.getBusinessId());
-                    if(order.getStatus() == "0"){
-                        order2.setStatus("订单已完成");
-                    }else{
-                        order2.setStatus("待配送");
-                    }
-                    order2.setAddress(order.getAddress());
-                    order2.setTotalPrice("￥"+order.getTotalPrice());
-                    order2.setBusinessName(order.getBusinessName());
-                    order2.setBusinessIcon(order.getBusinessIcon());
-                    orders.add(order2);
+                    orders.add(order);
                 }
                 orderAdapter.setData(orders);
             }

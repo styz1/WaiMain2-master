@@ -15,7 +15,7 @@
         >
 
         <linchange.example.com.waimain.widget.section.SectionTextItemView
-            android:id="@+id/btn_check_update"
+            android:id="@+id/tv_checkUpdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:siv_icon="@drawable/ic_version_update"
@@ -24,7 +24,7 @@
             />
 
         <linchange.example.com.waimain.widget.section.SectionTextItemView
-            android:id="@+id/btn_feedback"
+            android:id="@+id/tv_feedback"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:siv_icon="@drawable/ic_feedback"

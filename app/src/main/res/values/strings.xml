@@ -193,6 +193,7 @@
     <string name="hint_edit_username">请输入用户名</string>
     <string name="hint_edit_nickname">请输入昵称（最多20字）</string>
     <string name="hint_edit_feedback_content">请输入反馈内容（最多200字）</string>
+    <string name="hint_evaluate_content">请输入您对本订单的评价(最多200字)</string>
     <string name="hint_edit_contact_way">请输入您的联系方式（可选）</string>
 
 

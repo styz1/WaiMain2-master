@@ -23,17 +23,17 @@
             android:layout_marginRight="@dimen/content_margin"
             android:layout_marginTop="@dimen/content_padding"
             android:scaleType="fitCenter"
-            android:src="@drawable/login_name"
+            android:src="@drawable/ic_email"
             />
 
         <EditText
-            android:id="@+id/et_nickName"
+            android:id="@+id/et_email"
             android:layout_width="0.0dip"
             android:layout_height="match_parent"
             android:layout_weight="1.0"
             android:layout_gravity="center_vertical"
             android:maxLength="20"
-            android:hint="@string/hint_edit_nickname"
+            android:hint="请输入邮箱"
             android:background="@null"
             style="@style/Widget.LazyOrder.EditText"
             />
@@ -53,7 +53,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/bt_setNickName"
+        android:id="@+id/bt_email"
         android:layout_width="match_parent"
         android:layout_height="@dimen/cell_normal"
         android:layout_margin="@dimen/spacing_major"
