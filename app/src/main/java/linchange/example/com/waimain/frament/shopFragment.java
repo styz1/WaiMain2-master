@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,6 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.jwenfeng.library.pulltorefresh.BaseRefreshListener;
+import com.jwenfeng.library.pulltorefresh.PullToRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +45,7 @@ public class shopFragment extends Fragment {
     private ImageView map;
     private RecyclerView recyclerView;
     private ShopAdapter mLinearAdapter;
+    private PullToRefreshLayout refreshLayout;
     private List<Shop> shops = new ArrayList<>();
 
     public static shopFragment newInstance(String content) {
@@ -52,6 +58,64 @@ public class shopFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //获取fragment的布局文件
         View view = inflater.inflate(R.layout.fg_content, container, false);
+
+        //下拉组件
+        refreshLayout=(PullToRefreshLayout)view.findViewById(R.id.refresh);
+        refreshLayout.setRefreshListener(new BaseRefreshListener() {
+            @Override
+            public void refresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        // 结束刷新
+                        refreshLayout.finishRefresh();
+                        Retrofit retrofit = new Retrofit.Builder()
+                                .baseUrl(AppConfig.SERVER_URL)
+                                .addConverterFactory(GsonConverterFactory.create())
+                                .build();
+                        BusinessService businessService = retrofit.create(BusinessService.class);
+                        Call<List<Business>> businessCall = businessService.getBusiness();
+                        businessCall.enqueue(new Callback<List<Business>>() {
+                            @Override
+                            public void onResponse(Call<List<Business>> call, Response<List<Business>> response) {
+                                List<Business> result = response.body();
+                                shops.clear();
+                                for (Business business : result) {
+                                    Shop shop = new Shop();
+                                    shop.setId(business.getId());
+                                    shop.setAddress(business.getAddress());
+                                    shop.setBulletin(business.getBulletin());
+                                    shop.setPhone(business.getPhone());
+                                    shop.setName(business.getName());
+                                    shop.setSubTitle(business.getBulletin());
+                                    shop.setIcon(business.getIcon());
+                                    shops.add(shop);
+                                }
+                                mLinearAdapter.setData(shops);
+                            }
+
+                            @Override
+                            public void onFailure(Call<List<Business>> call, Throwable t) {
+                                Log.d("net: ", "failure");
+                            }
+                        });
+                        Toast.makeText(getActivity(),"刷新成功",Toast.LENGTH_SHORT).show();
+                    }
+                }, 2000);
+            }
+
+            @Override
+            public void loadMore() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        // 结束加载更多
+                        refreshLayout.finishLoadMore();
+                    }
+                }, 2000);
+            }
+        });
+
         //得到里面的recycleView
         recyclerView = (RecyclerView) view.findViewById(R.id.rv_);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());

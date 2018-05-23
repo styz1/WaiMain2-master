@@ -64,7 +64,9 @@ public class OrderDetailActivity extends AppCompatActivity {
         evaluateDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(OrderDetailActivity.this,EvaluateDetailActivity.class);
+                intent.putExtra("order",order);
+                startActivity(intent);
             }
         });
     }

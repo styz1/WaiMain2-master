@@ -91,7 +91,7 @@
         android:layout_marginLeft="@dimen/spacing_major"
         android:layout_marginRight="@dimen/spacing_major"
         android:layout_marginBottom="3dp"
-        android:text="提交评价"
+        android:text="提交反馈"
         style="@style/Widget.LazyOrder.Button"
         />
 

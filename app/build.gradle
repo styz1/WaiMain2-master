@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "linchange.example.com.waimain"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -63,4 +63,7 @@ dependencies {
     //购物车第三方动画库
     compile 'com.github.jlcclidong:AddCartAniamtion:v3.0'
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    //下拉刷新
+    compile 'com.jwenfeng.pulltorefresh:library:1.2.7'
+
 }

@@ -3,12 +3,16 @@ package linchange.example.com.waimain.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.jwenfeng.library.pulltorefresh.BaseRefreshListener;
+import com.jwenfeng.library.pulltorefresh.PullToRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,8 +22,10 @@ import java.util.List;
 import linchange.example.com.waimain.R;
 import linchange.example.com.waimain.adapter.ProductListAdapter;
 import linchange.example.com.waimain.context.AppConfig;
+import linchange.example.com.waimain.entity.Business;
 import linchange.example.com.waimain.entity.Product;
 import linchange.example.com.waimain.entity.Shop;
+import linchange.example.com.waimain.myInterface.BusinessService;
 import linchange.example.com.waimain.myInterface.ProductService;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,6 +39,7 @@ public class ShoppingActivity extends Activity {
     private ListView lvProduct; //商品展示列表控件
     private TextView tvSelected; //已选择商品数量提示文字
     private TextView tvTotal; //已选择商品总价提示文字
+    private PullToRefreshLayout pullToRefreshLayout;
 
     private Button btnTakeOrder; //下单按钮
 
@@ -61,6 +68,53 @@ public class ShoppingActivity extends Activity {
     //初始化控件事件
     private void initEvents() {
         mInstance = this; //设置实例等于当前对象本身
+
+        //        pullToRefreshLayout.setRefreshListener(new BaseRefreshListener() {
+//            @Override
+//            public void refresh() {
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        // 结束刷新
+//                        pullToRefreshLayout.finishRefresh();
+//                        Retrofit retrofit = new Retrofit.Builder()
+//                                .baseUrl(AppConfig.SERVER_URL)
+//                                .addConverterFactory(GsonConverterFactory.create())
+//                                .build();
+//
+//                        ProductService productService =retrofit.create(ProductService.class);
+//                        Call<List<Product>> productsCall = productService.getProducts(shop.getId());
+//                        productsCall.enqueue(new Callback<List<Product>>() {
+//                            @Override
+//                            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+//                                List<Product> products =response.body();
+//                                for(Product product :products){
+//                                    product.setShopName(shop.getName());
+//                                    productsData.add(product);
+//                                }
+//                                productListAdapter.notifyDataSetChanged();
+//                            }
+//                            @Override
+//                            public void onFailure(Call<List<Product>> call, Throwable t) {
+//
+//                            }
+//                        });
+//                        Toast.makeText(ShoppingActivity.this,"刷新成功",Toast.LENGTH_SHORT).show();
+//                    }
+//                }, 2000);
+//            }
+//
+//            @Override
+//            public void loadMore() {
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        // 结束加载更多
+//                        pullToRefreshLayout.finishLoadMore();
+//                    }
+//                }, 2000);
+//            }
+//        });
 
         //将数据源放入适配器中
         productListAdapter = new ProductListAdapter(this, productsData);
@@ -182,6 +236,7 @@ public class ShoppingActivity extends Activity {
     private void initDatas() {
 //        Intent otherIntent = getIntent(); //获取商店列表传来商店信息
 //        shop =(Shop) otherIntent.getSerializableExtra("shop"); //获取商店信息
+
         Bundle bundle=getIntent().getExtras();
         shop=(Shop) bundle.get("shop");
         Retrofit retrofit = new Retrofit.Builder()
@@ -220,5 +275,6 @@ public class ShoppingActivity extends Activity {
         btnSortByPrice = (Button) findViewById(R.id.btn_sort_by_price);
         btnSortBySale = (Button) findViewById(R.id.btn_sort_by_sale);
         btnSortByAll = (Button) findViewById(R.id.btn_sort_by_all);
+//        pullToRefreshLayout=(PullToRefreshLayout)findViewById(R.id.refreshProduct);
     }
 }

@@ -21,4 +21,6 @@ public interface OrderService {
     Call<Boolean> newOrder(@Query("businessId")Integer businessId, @Query("userId")Integer userId,@Query("status")String status,@Query("totalPrice")String totalPrice,
                            @Query("consignee")String consignee,@Query("phone")String phone,@Query("payMethod")Integer payMethod,@Query("isEvaluate")String isEvaluate,
                            @Query("detail")String detail,@Query("address")String address,@Query("businessName")String businessName,@Query("businessIcon")String businessIcon);
+    @GET("setEvaluated/{evaluateId}/{orderId}")
+    Call<Boolean> setEvaluated(@Path("evaluateId")Integer evaluatedId,@Path("orderId")Integer orderId);
 }

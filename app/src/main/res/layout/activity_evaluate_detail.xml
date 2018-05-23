@@ -1,9 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="linchange.example.com.waimain.activity.EvaluateDetailActivity">
+    android:orientation="vertical"
+    android:background="@color/dark_gray_bg"
+    >
 
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/include_toolbar" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_size"
+        android:layout_marginTop="@dimen/spacing_minor"
+        android:background="@color/divider"
+        />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/white"
+        >
+
+        <TextView
+            android:id="@+id/et_myEvaluate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/spacing_major"
+            android:gravity="left"
+            android:maxLength="200"
+            android:textSize="@dimen/font_normal"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/secondary_text"
+            android:background="@null"
+            />
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_size"
+        android:background="@color/divider"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_size"
+        android:background="@color/divider"
+        />
+    <Button
+        android:id="@+id/bt_check_evaluate"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="@dimen/spacing_major"
+        android:layout_marginRight="@dimen/spacing_major"
+        android:layout_marginBottom="3dp"
+        android:text="确认"
+        style="@style/Widget.LazyOrder.Button"
+        />
+
+</LinearLayout>

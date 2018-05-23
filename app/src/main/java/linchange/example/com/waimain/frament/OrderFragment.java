@@ -44,6 +44,7 @@ public class OrderFragment extends Fragment {
 //        Bundle bundle=getArguments();
 //        User user=(User)bundle.getSerializable("user");
         //获取登录的个人信息
+
         User user=(User) ObjectSaveUtil.readObject(getActivity());
         //找到装配的recycleView
         recyclerView = (RecyclerView) view.findViewById(R.id.rv_order);

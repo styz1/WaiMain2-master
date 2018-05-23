@@ -27,6 +27,10 @@ public interface UserService {
     @GET("getUsers")
     Call<List<User>> getUsers();
 
+    //通过id获取用户信息
+    @GET("getUser/{id}")
+    Call<User>getUserById(@Path("id")String userId);
+
     //登录验证
     @GET("login/{username}/{password}")
     Call<User> login(@Path("username")String username,@Path("password")String password);

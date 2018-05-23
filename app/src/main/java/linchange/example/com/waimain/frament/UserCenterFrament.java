@@ -12,16 +12,26 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import linchange.example.com.waimain.LoginActivity;
 import linchange.example.com.waimain.R;
+import linchange.example.com.waimain.activity.MainActivity;
 import linchange.example.com.waimain.activity.SettingActivity;
 import linchange.example.com.waimain.activity.UserProfileActivity;
 import linchange.example.com.waimain.activity.MyAddressActivity;
 import linchange.example.com.waimain.bean.User;
+import linchange.example.com.waimain.context.AppConfig;
+import linchange.example.com.waimain.myInterface.UserService;
 import linchange.example.com.waimain.utils.ObjectSaveUtil;
 import linchange.example.com.waimain.widget.section.SectionTextItemView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Administrator on 2018/4/17.
@@ -48,6 +58,26 @@ public class UserCenterFrament extends Fragment {
 //        user=(User)bundle.getSerializable("user");
         //获取当前用户信息
         user=(User)ObjectSaveUtil.readObject(getActivity());
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(AppConfig.SERVER_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        UserService userService = retrofit.create(UserService.class);
+        Call<User> loginCall = userService.getUserById(user.getId());
+        loginCall.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                user=response.body();
+                ObjectSaveUtil.saveObject(getActivity(),user);
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
+            }
+        });
 
         TextView Name=(TextView)view.findViewById(R.id.txt_account_name1);
         TextView Mobile=(TextView)view.findViewById(R.id.txt_mobileN);
