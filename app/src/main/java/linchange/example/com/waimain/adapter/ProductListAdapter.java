@@ -1,6 +1,7 @@
 package linchange.example.com.waimain.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,9 +99,15 @@ public class ProductListAdapter extends BaseAdapter {
      */
     private void initListItem(final ViewHolder viewHolder, final Product product) {
 
-        Glide.with(mContext)
-                .load(product.getPicture())
-                .into(viewHolder.picture);
+        if(TextUtils.isEmpty(product.getPicture())){
+            Glide.with(mContext)
+                    .load(R.drawable.ic_lanucher)
+                    .into(viewHolder.picture);
+        }else {
+            Glide.with(mContext)
+                    .load(product.getPicture())
+                    .into(viewHolder.picture);
+        }
         viewHolder.name.setText(product.getName()); //设置商品名
         viewHolder.price.setText(String.valueOf("￥" + product.getPrice())); //设置商品价格
         viewHolder.sale.setText(String.valueOf("月售:" + product.getSale())); //设置商品月销售量
@@ -111,7 +118,7 @@ public class ProductListAdapter extends BaseAdapter {
         if(rate>=5){
             rate=5;
         }
-        viewHolder.ratingBar.setRating(rate);
+        viewHolder.ratingBar.setRating(4);
 
     }
 

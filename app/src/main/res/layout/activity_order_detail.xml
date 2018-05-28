@@ -162,6 +162,17 @@
         style="@style/Widget.LazyOrder.Button"
         />
         <Button
+            android:id="@+id/btn_star"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/spacing_major"
+            android:layout_marginRight="@dimen/spacing_major"
+            android:layout_marginBottom="3dp"
+            android:text="收藏订单"
+            style="@style/Widget.LazyOrder.Button"
+            />
+        <Button
             android:id="@+id/btn_evaluateDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -172,6 +183,7 @@
             android:text="查看评价"
             style="@style/Widget.LazyOrder.Button"
             />
+
     </LinearLayout>
 
 

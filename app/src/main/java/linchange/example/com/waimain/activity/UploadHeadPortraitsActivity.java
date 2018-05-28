@@ -99,15 +99,14 @@ public class UploadHeadPortraitsActivity extends AppCompatActivity implements Vi
 
         RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
-        HashMap map =new HashMap();
+        Map map =new HashMap();
         map.put("userId",user.getId());
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(AppConfig.SERVER_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         UserService userService = retrofit.create(UserService.class);
-        Call<Boolean> resultCall = userService.uploadImage(body);
+        Call<Boolean> resultCall = userService.uploadImage(map,body);
         resultCall.enqueue(new Callback<Boolean>() {
             @Override
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {

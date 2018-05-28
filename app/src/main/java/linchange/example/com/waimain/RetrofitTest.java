@@ -38,25 +38,40 @@ public class RetrofitTest {
                 .baseUrl(AppConfig.SERVER_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        OrderService orderService=retrofit.create(OrderService.class);
-        Call<Boolean> booleanCall12=orderService.setEvaluated(3,37);
-        booleanCall12.enqueue(new Callback<Boolean>() {
+
+        OrderService orderService = retrofit.create(OrderService.class);
+        Call<Order> ordersCall = orderService.getOrderByOrderId(40);
+        ordersCall.enqueue(new Callback<Order>() {
             @Override
-            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                Boolean b=response.body();
-                if(b){
-//                    Toast.makeText(EvaluateActivity.this,"成功提交评价",Toast.LENGTH_SHORT).show();
-//                    finish();
-                }else{
-//                    Toast.makeText(EvaluateActivity.this,"无法访问服务器，请联系管理员",Toast.LENGTH_SHORT).show();
-                }
+            public void onResponse(Call<Order> call, Response<Order> response) {
+                Order order=response.body();
+
             }
 
             @Override
-            public void onFailure(Call<Boolean> call, Throwable t) {
-//                Toast.makeText(EvaluateActivity.this,"无法访问服务器，请联系管理员",Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<Order> call, Throwable t) {
+
             }
         });
+//        OrderService orderService=retrofit.create(OrderService.class);
+//        Call<Boolean> booleanCall12=orderService.setEvaluated(3,37);
+//        booleanCall12.enqueue(new Callback<Boolean>() {
+//            @Override
+//            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+//                Boolean b=response.body();
+//                if(b){
+////                    Toast.makeText(EvaluateActivity.this,"成功提交评价",Toast.LENGTH_SHORT).show();
+////                    finish();
+//                }else{
+////                    Toast.makeText(EvaluateActivity.this,"无法访问服务器，请联系管理员",Toast.LENGTH_SHORT).show();
+//                }
+//            }
+
+//            @Override
+//            public void onFailure(Call<Boolean> call, Throwable t) {
+////                Toast.makeText(EvaluateActivity.this,"无法访问服务器，请联系管理员",Toast.LENGTH_SHORT).show();
+//            }
+//        });
 //        OrderService orderService = retrofit.create(OrderService.class);
 //        Call<Boolean> booleanCall = orderService.newOrder(1,1,"0","200","黄昊","15659131431",0,
 //                "0","","福州大学30号楼406","东北大菜馆","http://localhost:8080/img/2.jpeg");

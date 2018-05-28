@@ -60,6 +60,7 @@ public class EvaluateActivity extends AppCompatActivity {
                             if(evaluate!=null){
                                 Toast.makeText(EvaluateActivity.this,"成功创建评价",Toast.LENGTH_SHORT).show();
                                 setEvluated();
+
                             }else {
                                 Toast.makeText(EvaluateActivity.this,"无法提交评价",Toast.LENGTH_SHORT).show();
                             }

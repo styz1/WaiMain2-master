@@ -3,6 +3,7 @@ package linchange.example.com.waimain.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,9 +48,15 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.LinearViewHold
     @Override
     public void onBindViewHolder(ShopAdapter.LinearViewHolder holder, final int position) {
         final Shop shop = shops.get(position);
-        Glide.with(mContext)
-                .load(shop.getIcon())
-                .into(holder.imageView);
+        if(TextUtils.isEmpty(shop.getIcon())){
+            Glide.with(mContext)
+                    .load(R.drawable.ic_lanucher)
+                    .into(holder.imageView);
+        }else {
+            Glide.with(mContext)
+                    .load(shop.getIcon())
+                    .into(holder.imageView);
+        }
         holder.textView1.setText(shop.getName());
         holder.textView2.setText(shop.getSubTitle());
         holder.itemView.setOnClickListener(new View.OnClickListener() {

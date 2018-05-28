@@ -65,7 +65,9 @@
         <activity android:name=".activity.UpdatePasswordActivity" />
         <activity android:name=".activity.UploadHeadPortraitsActivity" />
         <activity android:name=".activity.EvaluateActivity" />
-        <activity android:name=".activity.EvaluateDetailActivity"></activity>
+        <activity android:name=".activity.EvaluateDetailActivity" />
+        <activity android:name=".activity.MyEvaluateActivity" />
+        <activity android:name=".activity.MyStarActivity"></activity>
     </application>
 
 </manifest>

@@ -17,4 +17,8 @@ public interface BusinessService {
 
     @GET("getBusinessById/{id}")
     Call<Business> getBusinessById(@Path("id") Integer id);
+
+    //模糊查询店铺
+    @GET("getBusinessByName/{shopName}")
+    Call<List<Business>> getBusinessByName(@Path("shopName")String shopName);
 }

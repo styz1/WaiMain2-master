@@ -85,12 +85,36 @@ public class MyAddressActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         //创建适配器
         addressAdapter = new AddressAdapter(addresses, this);
+        addressAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(addressAdapter);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(AppConfig.SERVER_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        AddressService addressService = retrofit.create(AddressService.class);
+        Call<List<Address>> addressCall = addressService.getAddress(user.getId());
+        addressCall.enqueue(new Callback<List<Address>>() {
+            @Override
+            public void onResponse(Call<List<Address>> call, Response<List<Address>> response) {
+                List<Address> addresse = response.body();
+                addresses.clear();
+                for (Address address : addresse) {
+                    addresses.add(address);
+                }
+                addressAdapter.notifyDataSetChanged();
+                addressAdapter.setData(addresses);
+            }
+
+            @Override
+            public void onFailure(Call<List<Address>> call, Throwable t) {
+            }
+        });
     }
 
     private void initData() {
@@ -116,6 +140,7 @@ public class MyAddressActivity extends AppCompatActivity {
                     addresses.add(address);
                 }
                 addressAdapter.setData(addresses);
+                addressAdapter.notifyDataSetChanged();
             }
 
             @Override

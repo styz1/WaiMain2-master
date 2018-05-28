@@ -1,6 +1,6 @@
 package linchange.example.com.waimain.adapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,34 +15,33 @@ import java.util.List;
 
 import linchange.example.com.waimain.R;
 import linchange.example.com.waimain.activity.OrderDetailActivity;
-import linchange.example.com.waimain.activity.ShoppingActivity;
+import linchange.example.com.waimain.entity.Evaluate;
 import linchange.example.com.waimain.entity.Order;
 
 /**
- * Created by Administrator on 2018/4/17.
+ * Created by Administrator on 2018/5/28.
  */
 
-//订单列表适配器
-public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.LinearViewHolder> {
-
-    private Context mContext;
+public class StarAdapter extends RecyclerView.Adapter<StarAdapter.LinearViewHolder>{
+    private Activity mContext;
     private List<Order> orders;
 
-    public OrderAdapter(List<Order> orders) {
+    public StarAdapter(List<Order> orders, Activity activity){
+        mContext = activity;
         this.orders = orders;
     }
 
-    @Override
-    public OrderAdapter.LinearViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        mContext = parent.getContext();
-        return new LinearViewHolder(LayoutInflater.from(mContext).inflate(R.layout.layout_order_item, parent, false));
-    }
-    public void setData(List<Order> orders) {
+    public void setData(List<Order> orders){
         this.orders = orders;
         notifyDataSetChanged();
     }
     @Override
-    public void onBindViewHolder(OrderAdapter.LinearViewHolder holder, int position) {
+    public LinearViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new LinearViewHolder(LayoutInflater.from(mContext).inflate(R.layout.star_item, parent, false));
+    }
+
+    @Override
+    public void onBindViewHolder(LinearViewHolder holder, int position) {
         final Order order = orders.get(position);
         Glide.with(mContext)
                 .load(order.getBusinessIcon())
@@ -71,7 +70,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.LinearViewHo
                 mContext.startActivity(intent);
             }
         });
-
     }
 
     @Override
@@ -85,12 +83,11 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.LinearViewHo
 
         public LinearViewHolder(View itemView) {
             super(itemView);
-            imageView = (ImageView) itemView.findViewById(R.id.shop_icon);
-            shopName = (TextView) itemView.findViewById(R.id.shop);
-            status = (TextView) itemView.findViewById(R.id.status);
-            address = (TextView) itemView.findViewById(R.id.detail);
-            totalPrice =(TextView) itemView.findViewById(R.id.total_price);
+            imageView = (ImageView) itemView.findViewById(R.id.img_shop_icon);
+            shopName = (TextView) itemView.findViewById(R.id.txt_shop);
+            status = (TextView) itemView.findViewById(R.id.txt_status);
+            address = (TextView) itemView.findViewById(R.id.txt_detail);
+            totalPrice =(TextView) itemView.findViewById(R.id.txt_total_price);
         }
     }
-
 }

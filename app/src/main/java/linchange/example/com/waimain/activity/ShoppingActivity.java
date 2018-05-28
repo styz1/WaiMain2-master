@@ -69,52 +69,6 @@ public class ShoppingActivity extends Activity {
     private void initEvents() {
         mInstance = this; //设置实例等于当前对象本身
 
-        //        pullToRefreshLayout.setRefreshListener(new BaseRefreshListener() {
-//            @Override
-//            public void refresh() {
-//                new Handler().postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        // 结束刷新
-//                        pullToRefreshLayout.finishRefresh();
-//                        Retrofit retrofit = new Retrofit.Builder()
-//                                .baseUrl(AppConfig.SERVER_URL)
-//                                .addConverterFactory(GsonConverterFactory.create())
-//                                .build();
-//
-//                        ProductService productService =retrofit.create(ProductService.class);
-//                        Call<List<Product>> productsCall = productService.getProducts(shop.getId());
-//                        productsCall.enqueue(new Callback<List<Product>>() {
-//                            @Override
-//                            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
-//                                List<Product> products =response.body();
-//                                for(Product product :products){
-//                                    product.setShopName(shop.getName());
-//                                    productsData.add(product);
-//                                }
-//                                productListAdapter.notifyDataSetChanged();
-//                            }
-//                            @Override
-//                            public void onFailure(Call<List<Product>> call, Throwable t) {
-//
-//                            }
-//                        });
-//                        Toast.makeText(ShoppingActivity.this,"刷新成功",Toast.LENGTH_SHORT).show();
-//                    }
-//                }, 2000);
-//            }
-//
-//            @Override
-//            public void loadMore() {
-//                new Handler().postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        // 结束加载更多
-//                        pullToRefreshLayout.finishLoadMore();
-//                    }
-//                }, 2000);
-//            }
-//        });
 
         //将数据源放入适配器中
         productListAdapter = new ProductListAdapter(this, productsData);

@@ -2,6 +2,7 @@ package linchange.example.com.waimain.myInterface;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import linchange.example.com.waimain.bean.User;
 import okhttp3.MultipartBody;
@@ -58,7 +59,7 @@ public interface UserService {
     //上传头像
     @Multipart
     @POST("upload")
-    Call<Boolean> uploadImage(@Part MultipartBody.Part file);
+    Call<Boolean> uploadImage(@QueryMap Map<String ,Object> userMap, @Part MultipartBody.Part file);
 
 
 

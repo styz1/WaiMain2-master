@@ -19,6 +19,8 @@ import com.bumptech.glide.Glide;
 import linchange.example.com.waimain.LoginActivity;
 import linchange.example.com.waimain.R;
 import linchange.example.com.waimain.activity.MainActivity;
+import linchange.example.com.waimain.activity.MyEvaluateActivity;
+import linchange.example.com.waimain.activity.MyStarActivity;
 import linchange.example.com.waimain.activity.SettingActivity;
 import linchange.example.com.waimain.activity.UserProfileActivity;
 import linchange.example.com.waimain.activity.MyAddressActivity;
@@ -44,6 +46,44 @@ public class UserCenterFrament extends Fragment {
     private SectionTextItemView address,favorite,evaluate,setting;
     private ImageView touxiang;
     private User user;
+    private TextView Name,Mobile;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(AppConfig.SERVER_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        UserService userService = retrofit.create(UserService.class);
+        Call<User> loginCall = userService.getUserById(user.getId());
+        loginCall.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                user=response.body();
+                ObjectSaveUtil.saveObject(getActivity(),user);
+                //载入昵称
+                if(TextUtils.isEmpty(user.getNickname())){
+                    Name.setText("点击设置昵称");
+                }else{
+                    Name.setText(user.getNickname());
+                }
+                //载入电话
+                Mobile.setText(user.getMobile());
+                //假如有头像则载入头像
+                if(!TextUtils.isEmpty(user.getIcon())) {
+                    Glide.with(getActivity())
+                            .load(user.getIcon())
+                            .into(touxiang);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
+            }
+        });
+    }
 
     public static UserCenterFrament newInstance(String content){
         UserCenterFrament userCenterFrament= new UserCenterFrament();
@@ -53,11 +93,12 @@ public class UserCenterFrament extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fg_user_center,container,false);
-//        Bundle bundle=getArguments();
-//        user=(User)bundle.getSerializable("user");
-        //获取当前用户信息
+        final View view = inflater.inflate(R.layout.fg_user_center,container,false);
         user=(User)ObjectSaveUtil.readObject(getActivity());
+
+        Name=(TextView)view.findViewById(R.id.txt_account_name1);
+        Mobile=(TextView)view.findViewById(R.id.txt_mobileN);
+        touxiang = (ImageView) view.findViewById(R.id.img_account_avatar1);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(AppConfig.SERVER_URL)
@@ -71,6 +112,20 @@ public class UserCenterFrament extends Fragment {
             public void onResponse(Call<User> call, Response<User> response) {
                 user=response.body();
                 ObjectSaveUtil.saveObject(getActivity(),user);
+                //载入昵称
+                if(TextUtils.isEmpty(user.getNickname())){
+                    Name.setText("点击设置昵称");
+                }else{
+                    Name.setText(user.getNickname());
+                }
+                //载入电话
+                Mobile.setText(user.getMobile());
+                //假如有头像则载入头像
+                if(!TextUtils.isEmpty(user.getIcon())) {
+                    Glide.with(getActivity())
+                            .load(user.getIcon())
+                            .into(touxiang);
+                }
             }
 
             @Override
@@ -79,15 +134,21 @@ public class UserCenterFrament extends Fragment {
             }
         });
 
-        TextView Name=(TextView)view.findViewById(R.id.txt_account_name1);
-        TextView Mobile=(TextView)view.findViewById(R.id.txt_mobileN);
+        //载入昵称
         if(TextUtils.isEmpty(user.getNickname())){
             Name.setText("点击设置昵称");
         }else{
             Name.setText(user.getNickname());
         }
-
+        //载入电话
         Mobile.setText(user.getMobile());
+        //假如有头像则载入头像
+        if(!TextUtils.isEmpty(user.getIcon())) {
+            Glide.with(getActivity())
+                    .load(user.getIcon())
+                    .into(touxiang);
+        }
+
         linearLayout = (LinearLayout) view.findViewById(R.id.layout_login_before);
         //跳转到修改个人设置页面
         linearLayout.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +158,7 @@ public class UserCenterFrament extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
+
         //跳转到地址页面
         address = (SectionTextItemView)view.findViewById(R.id.btn_my_address);
         address.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +169,7 @@ public class UserCenterFrament extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
+
         //跳转到设置页面
         setting=(SectionTextItemView)view.findViewById(R.id.btn_Setting);
         setting.setOnClickListener(new View.OnClickListener() {
@@ -116,18 +179,31 @@ public class UserCenterFrament extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
-        //假如有头像则载入头像
-        if(!TextUtils.isEmpty(user.getIcon())) {
-            touxiang = (ImageView) view.findViewById(R.id.img_account_avatar1);
-            Glide.with(getActivity())
-                    .load(user.getIcon())
-                    .into(touxiang);
-        }
+
+        //跳转到用户所有评论界面
+        evaluate = (SectionTextItemView)view.findViewById(R.id.btn_my_evaluates);
+        evaluate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MyEvaluateActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        //跳转到用户收藏界面
+        favorite = (SectionTextItemView)view.findViewById(R.id.btn_my_favorites);
+        favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MyStarActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
         return view;
     }
     //初始化控件
-    private void initViews(){
-
+    private void initViews(View view){
     }
 
 }

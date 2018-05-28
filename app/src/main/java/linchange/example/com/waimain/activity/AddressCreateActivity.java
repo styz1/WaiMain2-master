@@ -57,6 +57,7 @@ public class AddressCreateActivity extends AppCompatActivity {
                     public void onResponse(Call<Address> call, Response<Address> response) {
                         Address address = response.body();
                         Toast.makeText(AddressCreateActivity.this,"添加地址成功",Toast.LENGTH_SHORT).show();
+                        finish();
                     }
 
                     @Override

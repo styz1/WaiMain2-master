@@ -23,6 +23,27 @@ public class Order implements Serializable {
     private String isEvaluate;
     //评价id;
     private Integer EvaluateId;
+
+    public String getIsStar() {
+        return isStar;
+    }
+
+    public void setIsStar(String isStar) {
+        this.isStar = isStar;
+    }
+
+    public Integer getStarId() {
+        return StarId;
+    }
+
+    public void setStarId(Integer starId) {
+        StarId = starId;
+    }
+
+    //是否收藏
+    private String isStar;
+    //收藏id
+    private Integer StarId;
     //订单详情
     private String detail;
     private String address;

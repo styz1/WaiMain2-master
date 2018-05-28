@@ -8,10 +8,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -44,6 +46,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class shopFragment extends Fragment {
     private ImageView map;
     private RecyclerView recyclerView;
+    private ImageView search;
+    private EditText et_shopName;
     private ShopAdapter mLinearAdapter;
     private PullToRefreshLayout refreshLayout;
     private List<Shop> shops = new ArrayList<>();
@@ -101,7 +105,7 @@ public class shopFragment extends Fragment {
                         });
                         Toast.makeText(getActivity(),"刷新成功",Toast.LENGTH_SHORT).show();
                     }
-                }, 2000);
+                }, 1000);
             }
 
             @Override
@@ -162,6 +166,50 @@ public class shopFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        //获得要搜索的商店名称
+        et_shopName =(EditText)view.findViewById(R.id.search_edit_text);
+
+        //搜索按钮监听
+        search = (ImageView)view.findViewById(R.id.img_search);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(AppConfig.SERVER_URL)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                BusinessService businessService = retrofit.create(BusinessService.class);
+                if(!TextUtils.isEmpty(et_shopName.getText())) {
+                    Call<List<Business>> businessCall = businessService.getBusinessByName(et_shopName.getText().toString());
+                    businessCall.enqueue(new Callback<List<Business>>() {
+                        @Override
+                        public void onResponse(Call<List<Business>> call, Response<List<Business>> response) {
+                            List<Business> result = response.body();
+                            shops.clear();
+                            for (Business business : result) {
+                                Shop shop = new Shop();
+                                shop.setId(business.getId());
+                                shop.setAddress(business.getAddress());
+                                shop.setBulletin(business.getBulletin());
+                                shop.setPhone(business.getPhone());
+                                shop.setName(business.getName());
+                                shop.setSubTitle(business.getBulletin());
+                                shop.setIcon(business.getIcon());
+                                shops.add(shop);
+                            }
+                            mLinearAdapter.setData(shops);
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<Business>> call, Throwable t) {
+
+                        }
+                    });
+                }
+            }
+        });
+
 
         return view;
     }

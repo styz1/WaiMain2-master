@@ -15,6 +15,7 @@ import linchange.example.com.waimain.R;
 import linchange.example.com.waimain.bean.User;
 import linchange.example.com.waimain.context.AppConfig;
 import linchange.example.com.waimain.myInterface.UserService;
+import linchange.example.com.waimain.utils.ObjectSaveUtil;
 import linchange.example.com.waimain.utils.ShareUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -102,7 +103,7 @@ public class RegisterActivity extends Activity {
                 Boolean b= response.body();
                 if(b){
                     Toast.makeText(RegisterActivity.this,"成功注册用户",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                     RegisterActivity.this.finish(); //结束当前页面
                 }else {
                     Toast.makeText(RegisterActivity.this,"用户名已存在",Toast.LENGTH_SHORT).show();
