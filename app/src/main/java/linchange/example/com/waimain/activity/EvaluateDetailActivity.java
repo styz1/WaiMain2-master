@@ -12,6 +12,7 @@ import linchange.example.com.waimain.context.AppConfig;
 import linchange.example.com.waimain.entity.Evaluate;
 import linchange.example.com.waimain.entity.Order;
 import linchange.example.com.waimain.myInterface.EvaluateService;
+import linchange.example.com.waimain.utils.AppApplication;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -27,6 +28,8 @@ public class EvaluateDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evaluate_detail);
+        //添加到activity列表中
+        AppApplication.getApp().addActivity(this);
         initViews();
         initEvaluate();
         initEvents();

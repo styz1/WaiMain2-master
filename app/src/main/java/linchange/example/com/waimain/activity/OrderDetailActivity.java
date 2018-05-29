@@ -20,6 +20,7 @@ import linchange.example.com.waimain.context.AppConfig;
 import linchange.example.com.waimain.entity.Order;
 import linchange.example.com.waimain.entity.Shop;
 import linchange.example.com.waimain.myInterface.OrderService;
+import linchange.example.com.waimain.utils.AppApplication;
 import linchange.example.com.waimain.utils.StringUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,6 +37,8 @@ public class OrderDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail);
+        //添加到activity列表中
+        AppApplication.getApp().addActivity(this);
         initViews();
         initData();
     }
@@ -67,21 +70,24 @@ public class OrderDetailActivity extends AppCompatActivity {
             orderPayMethod.setText("QQ支付");
         }
         //该订单是否已经有评价,没有显示提交评价按钮，有则显示查看评价按钮
-        if(order.getIsEvaluate().equals("0")){
-            evaluateDetail.setVisibility(View.GONE);
-            evaluate.setVisibility(View.VISIBLE);
-        }else {
-            evaluate.setVisibility(View.GONE);
-            evaluateDetail.setVisibility(View.VISIBLE);
+        if(order.getIsEvaluate()!=null) {
+            if (order.getIsEvaluate().equals("0")) {
+                evaluateDetail.setVisibility(View.GONE);
+                evaluate.setVisibility(View.VISIBLE);
+            } else {
+                evaluate.setVisibility(View.GONE);
+                evaluateDetail.setVisibility(View.VISIBLE);
+            }
         }
-
-        //收藏显示设置
-        if(order.getIsStar().equals("0")){
-            star.setText("收藏订单");
-            star.setBackgroundColor(Color.parseColor("#3F51B5"));
-        }else{
-            star.setText("已收藏");
-            star.setBackgroundColor(Color.GRAY);
+        if(order.getIsStar()!=null){
+            //收藏显示设置
+            if(order.getIsStar().equals("0")){
+                star.setText("收藏订单");
+                star.setBackgroundColor(Color.parseColor("#3F51B5"));
+            }else{
+                star.setText("已收藏");
+                star.setBackgroundColor(Color.GRAY);
+            }
         }
         //收藏按钮监听
         star.setOnClickListener(new View.OnClickListener() {

@@ -24,6 +24,7 @@ import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
 
 import linchange.example.com.waimain.R;
+import linchange.example.com.waimain.utils.AppApplication;
 
 public class BaiduMapActivity extends AppCompatActivity implements View.OnClickListener{
     private MapView mMapView;
@@ -42,6 +43,8 @@ public class BaiduMapActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.activity_baidu_map);
+        //添加到activity列表中
+        AppApplication.getApp().addActivity(this);
         initView();
         initMap();
     }

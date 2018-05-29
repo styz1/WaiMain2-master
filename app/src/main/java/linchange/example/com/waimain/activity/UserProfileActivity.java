@@ -7,6 +7,7 @@ import android.view.View;
 
 import linchange.example.com.waimain.R;
 import linchange.example.com.waimain.bean.User;
+import linchange.example.com.waimain.utils.AppApplication;
 import linchange.example.com.waimain.widget.section.SectionExtensionItemView;
 import linchange.example.com.waimain.widget.section.SectionTextItemView;
 
@@ -17,6 +18,8 @@ public class UserProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+        //添加到activity列表中
+        AppApplication.getApp().addActivity(this);
         initviews();//初始化控件
         initevents();
     }

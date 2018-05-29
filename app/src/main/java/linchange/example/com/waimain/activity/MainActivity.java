@@ -14,6 +14,7 @@ import linchange.example.com.waimain.bean.User;
 import linchange.example.com.waimain.frament.shopFragment;
 import linchange.example.com.waimain.frament.OrderFragment;
 import linchange.example.com.waimain.frament.UserCenterFrament;
+import linchange.example.com.waimain.utils.AppApplication;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //添加到activity列表中
+        AppApplication.getApp().addActivity(this);
         //接收user对象
         Intent intent=getIntent();
         user=(User)intent.getSerializableExtra("user");

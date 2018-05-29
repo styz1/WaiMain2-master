@@ -16,6 +16,7 @@ import linchange.example.com.waimain.bean.User;
 import linchange.example.com.waimain.context.AppConfig;
 import linchange.example.com.waimain.entity.Address;
 import linchange.example.com.waimain.myInterface.AddressService;
+import linchange.example.com.waimain.utils.AppApplication;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,6 +36,8 @@ public class AddressUpdateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address_update2);
+        //添加到activity列表中
+        AppApplication.getApp().addActivity(this);
         initViews();
         initData();
         initEvent();

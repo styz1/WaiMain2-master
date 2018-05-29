@@ -30,6 +30,7 @@ import linchange.example.com.waimain.R;
 import linchange.example.com.waimain.bean.User;
 import linchange.example.com.waimain.context.AppConfig;
 import linchange.example.com.waimain.myInterface.UserService;
+import linchange.example.com.waimain.utils.AppApplication;
 import linchange.example.com.waimain.utils.ObjectSaveUtil;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -61,6 +62,8 @@ public class UploadHeadPortraitsActivity extends AppCompatActivity implements Vi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.popupwindow_camera_need);
+        //添加到activity列表中
+        AppApplication.getApp().addActivity(this);
         initView();
 
 

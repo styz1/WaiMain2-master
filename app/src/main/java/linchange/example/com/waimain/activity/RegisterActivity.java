@@ -15,6 +15,7 @@ import linchange.example.com.waimain.R;
 import linchange.example.com.waimain.bean.User;
 import linchange.example.com.waimain.context.AppConfig;
 import linchange.example.com.waimain.myInterface.UserService;
+import linchange.example.com.waimain.utils.AppApplication;
 import linchange.example.com.waimain.utils.ObjectSaveUtil;
 import linchange.example.com.waimain.utils.ShareUtils;
 import retrofit2.Call;
@@ -38,7 +39,8 @@ public class RegisterActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        //添加到activity列表中
+        AppApplication.getApp().addActivity(this);
         initViews(); //初始化页面控件
         initEvents(); //初始化控件事件
     }

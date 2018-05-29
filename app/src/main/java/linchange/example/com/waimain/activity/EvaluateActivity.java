@@ -16,6 +16,7 @@ import linchange.example.com.waimain.entity.Order;
 import linchange.example.com.waimain.entity.Shop;
 import linchange.example.com.waimain.myInterface.EvaluateService;
 import linchange.example.com.waimain.myInterface.OrderService;
+import linchange.example.com.waimain.utils.AppApplication;
 import linchange.example.com.waimain.utils.ObjectSaveUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,6 +36,8 @@ public class EvaluateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evaluate);
+        //添加到activity列表中
+        AppApplication.getApp().addActivity(this);
         initViews();
         initEvents();
 

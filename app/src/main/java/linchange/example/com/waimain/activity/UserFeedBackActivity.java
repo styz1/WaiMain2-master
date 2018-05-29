@@ -13,6 +13,7 @@ import linchange.example.com.waimain.bean.User;
 import linchange.example.com.waimain.context.AppConfig;
 import linchange.example.com.waimain.entity.FeedBack;
 import linchange.example.com.waimain.myInterface.FeedBackService;
+import linchange.example.com.waimain.utils.AppApplication;
 import linchange.example.com.waimain.utils.ObjectSaveUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,6 +30,8 @@ public class UserFeedBackActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_feed_back);
+        //添加到activity列表中
+        AppApplication.getApp().addActivity(this);
         initViews();
         initEvents();
     }

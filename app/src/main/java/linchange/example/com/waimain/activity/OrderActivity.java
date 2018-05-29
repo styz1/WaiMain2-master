@@ -27,6 +27,7 @@ import linchange.example.com.waimain.entity.Address;
 import linchange.example.com.waimain.entity.Product;
 import linchange.example.com.waimain.entity.Shop;
 import linchange.example.com.waimain.myInterface.OrderService;
+import linchange.example.com.waimain.utils.AppApplication;
 import linchange.example.com.waimain.utils.ObjectSaveUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -72,6 +73,8 @@ public class OrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
+        //添加到activity列表中
+        AppApplication.getApp().addActivity(this);
         Intent otherIntent = getIntent(); //获取信息输入界面传来的意图
         selectedProducts = otherIntent.getParcelableArrayListExtra("selectedProducts"); //从意图中获取被选择的的商品数据
         Bundle bundle=getIntent().getExtras();

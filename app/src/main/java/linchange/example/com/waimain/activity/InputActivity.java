@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import linchange.example.com.waimain.R;
 import linchange.example.com.waimain.entity.Product;
+import linchange.example.com.waimain.utils.AppApplication;
 
 public class InputActivity extends Activity {
     private EditText etPhone; //手机号输入框
@@ -24,7 +25,8 @@ public class InputActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input);
-
+        //添加到activity列表中
+        AppApplication.getApp().addActivity(this);
         initViews(); //初始化页面控件
         initEvents(); //初始化控件事件
     }

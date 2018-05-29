@@ -14,6 +14,7 @@ import linchange.example.com.waimain.bean.User;
 import linchange.example.com.waimain.context.AppConfig;
 import linchange.example.com.waimain.entity.Address;
 import linchange.example.com.waimain.myInterface.AddressService;
+import linchange.example.com.waimain.utils.AppApplication;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,6 +32,7 @@ public class AddressCreateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address_update);
+        AppApplication.getApp().addActivity(this);
         //初始化控件
         initViews();
         //获取User对象

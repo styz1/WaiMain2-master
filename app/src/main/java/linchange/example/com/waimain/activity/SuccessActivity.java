@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import linchange.example.com.waimain.R;
 import linchange.example.com.waimain.entity.Product;
+import linchange.example.com.waimain.utils.AppApplication;
 
 public class SuccessActivity extends Activity {
 
@@ -25,6 +26,8 @@ public class SuccessActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_success);
+        //添加到activity列表中
+        AppApplication.getApp().addActivity(this);
 
         initViews(); //初始化页面控件
         initDatas(); //初始化页面数据

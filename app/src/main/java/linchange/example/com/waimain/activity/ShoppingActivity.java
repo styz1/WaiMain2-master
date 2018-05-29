@@ -27,6 +27,7 @@ import linchange.example.com.waimain.entity.Product;
 import linchange.example.com.waimain.entity.Shop;
 import linchange.example.com.waimain.myInterface.BusinessService;
 import linchange.example.com.waimain.myInterface.ProductService;
+import linchange.example.com.waimain.utils.AppApplication;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -59,6 +60,8 @@ public class ShoppingActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping);
+        //添加到activity列表中
+        AppApplication.getApp().addActivity(this);
 
         initViews(); //初始化页面控件
         initDatas(); //初始化数据

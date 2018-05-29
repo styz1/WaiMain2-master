@@ -12,6 +12,7 @@ import linchange.example.com.waimain.R;
 import linchange.example.com.waimain.bean.User;
 import linchange.example.com.waimain.context.AppConfig;
 import linchange.example.com.waimain.myInterface.UserService;
+import linchange.example.com.waimain.utils.AppApplication;
 import linchange.example.com.waimain.utils.ObjectSaveUtil;
 import linchange.example.com.waimain.utils.StringUtil;
 import retrofit2.Call;
@@ -30,6 +31,8 @@ public class SetEmailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_email);
+        //添加到activity列表中
+        AppApplication.getApp().addActivity(this);
         initViews();
         initEvents();
     }
